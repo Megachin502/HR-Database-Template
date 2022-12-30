@@ -25,7 +25,7 @@ export const getServerSideProps = async () => {
 }
 
 //
-export default function lookup({ employees }) {
+export default function Lookup({ employees }) {
   //Search
   const [search, setSearch] = useState('')
   const employ = employees.filter(
