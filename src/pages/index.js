@@ -37,6 +37,7 @@ export default function Home({ employees }) {
     console.log(data)
   }
 
+  //Form Variables
   const [name, setName] = useState('')
   const [id, setID] = useState('')
   const [department, setDepartment] = useState()
@@ -50,7 +51,7 @@ export default function Home({ employees }) {
         <div className="row">
           {/*Name*/}
           <div className="col-lg">
-            <label for="inputName" className="form-label">
+            <label htmlFor="inputName" className="form-label">
               Name
             </label>
             <input
@@ -66,7 +67,7 @@ export default function Home({ employees }) {
           </div>
           {/*ID*/}
           <div className="col-lg">
-            <label for="inputID" className="form-label">
+            <label htmlFor="inputID" className="form-label">
               ID
             </label>
             <input

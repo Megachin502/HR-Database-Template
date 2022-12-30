@@ -1,14 +1,3 @@
-// import mongoose from 'mongoose'
-
-// const kittenSchema = new mongoose.Schema({
-//   name: String,
-// })
-
-// //mongoose.model = {}
-// const kitten = mongoose.models.Kitten || mongoose.model('Kitten', kittenSchema)
-
-// export default kitten
-
 import { Schema, model, models } from 'mongoose'
 
 const employeeSchema = new Schema({
