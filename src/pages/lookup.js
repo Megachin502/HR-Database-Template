@@ -38,7 +38,7 @@ export default function Lookup({ employees }) {
   )
 
   return (
-    <div className="container w-50">
+    <div className="container">
       {/*search*/}
       <input
         type="text"
