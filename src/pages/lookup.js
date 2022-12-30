@@ -59,7 +59,7 @@ export default function lookup({ employees }) {
         </thead>
         <tbody>
           {employ.map((employee) => (
-            <tr>
+            <tr key={employee._id}>
               <td>{employee.name}</td>
               <td>{employee.id}</td>
               <td>{employee.department}</td>
