@@ -13,6 +13,7 @@ export default function App({ Component, pageProps }) {
       <Script
         src="https://upload-widget.cloudinary.com/global/all.js"
         type="text/javascript"
+        strategy="beforeInteractive"
       />
       <Navigation />
       <Component {...pageProps} />

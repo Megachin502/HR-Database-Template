@@ -1,9 +1,8 @@
 import { useState } from 'react'
-//import UploadWidget from './components/UploadWidget'
 import { useEffect, useRef } from 'react'
 
 export default function Home({ employees }) {
-  //Cloudinary widget
+  //Cloudinary
   const cloudinaryRef = useRef()
   const widgetRef = useRef()
   useEffect(() => {
@@ -12,10 +11,17 @@ export default function Home({ employees }) {
       {
         cloudName: 'dvkbd4vt0',
         uploadPreset: 'geafvcre',
+        multiple: false,
       },
       function (error, result) {
-        setFileURL(result.info.secure_url)
-        setFileName(result.info.original_filename)
+        // setFileURL(result.info.secure_url)
+        // setFileName(result.info.original_filename)
+
+        if (result.info.secure_url !== undefined) {
+          //console.log(result.info.secure_url)
+          setFileURL(result.info.secure_url)
+          setUploadState('Uploaded')
+        }
       },
     )
   }, [])
@@ -51,11 +57,8 @@ export default function Home({ employees }) {
         employmentStatus: employmentStatus,
         email: email,
         fileURL: fileURL,
-        fileName: fileName,
       }),
     })
-    const data = await res.json()
-    console.log(data)
   }
 
   //Form Variables
@@ -65,12 +68,12 @@ export default function Home({ employees }) {
   const [employmentStatus, setEmploymentStatus] = useState()
   const [email, setEmail] = useState('')
   const [fileURL, setFileURL] = useState('')
-  const [fileName, setFileName] = useState('')
+  const [uploadState, setUploadState] = useState('Upload')
 
   return (
     <>
       <h1 className="text-center">Submission Form</h1>
-      <form className="container w-50">
+      <form className="container">
         <div className="row">
           {/*Name*/}
           <div className="col-lg">
@@ -180,7 +183,10 @@ export default function Home({ employees }) {
                   setFile(e.target.files[0])
                 }}
               /> */}
-              <button onClick={() => widgetRef.current.open()}>Upload</button>
+              <br></br>
+              <button onClick={() => widgetRef.current.open()} type="button">
+                {uploadState}
+              </button>
             </div>
           </div>
         </div>

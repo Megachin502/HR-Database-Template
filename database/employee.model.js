@@ -7,7 +7,6 @@ const employeeSchema = new Schema({
   employmentStatus: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   fileURL: { type: String },
-  fileName: { type: String },
 })
 
 const Employee = models.Employee || model('Employee', employeeSchema)
