@@ -19,7 +19,6 @@ export default function Home({ employees }) {
 
   //Create document for database
   const createEmployee = async () => {
-    const randomNum = Math.floor(Math.random() * 1000)
     const res = await fetch('/api/createEmployee', {
       method: 'POST',
       headers: {
