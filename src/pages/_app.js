@@ -17,6 +17,12 @@ export default function App({ Component, pageProps }) {
       />
       <Navigation />
       <Component {...pageProps} />
+      <a
+        href="https://www.langleywebmasters.com/"
+        className="text-decoration-none text-black fixed-bottom ps-4 pb-3"
+      >
+        Created by Elvis Lam
+      </a>
     </>
   )
 }
