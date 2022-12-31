@@ -1,6 +1,25 @@
 import { useState } from 'react'
+//import UploadWidget from './components/UploadWidget'
+import { useEffect, useRef } from 'react'
 
 export default function Home({ employees }) {
+  //Cloudinary widget
+  const cloudinaryRef = useRef()
+  const widgetRef = useRef()
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary
+    widgetRef.current = cloudinaryRef.current.createUploadWidget(
+      {
+        cloudName: 'dvkbd4vt0',
+        uploadPreset: 'geafvcre',
+      },
+      function (error, result) {
+        setFileURL(result.info.secure_url)
+        setFileName(result.info.original_filename)
+      },
+    )
+  }, [])
+
   //Departments
   const departments = [
     'Human Resources',
@@ -23,6 +42,7 @@ export default function Home({ employees }) {
       method: 'POST',
       headers: {
         Content_Type: 'application/json',
+        //Content_Type: 'multipart/form-data',
       },
       body: JSON.stringify({
         name: name,
@@ -30,6 +50,8 @@ export default function Home({ employees }) {
         department: department,
         employmentStatus: employmentStatus,
         email: email,
+        fileURL: fileURL,
+        fileName: fileName,
       }),
     })
     const data = await res.json()
@@ -42,6 +64,8 @@ export default function Home({ employees }) {
   const [department, setDepartment] = useState()
   const [employmentStatus, setEmploymentStatus] = useState()
   const [email, setEmail] = useState('')
+  const [fileURL, setFileURL] = useState('')
+  const [fileName, setFileName] = useState('')
 
   return (
     <>
@@ -143,14 +167,22 @@ export default function Home({ employees }) {
             </div>
           </div>
           {/*File Upload*/}
-          {/* <div className="col-lg">
+          <div className="col-lg">
             <div className="form-group">
               <label htmlFor="InputEmail1" className="required pb-2">
                 File Upload
               </label>
-              <input type="file" name="file" multiple />
+              {/* <input
+                type="file"
+                name="file"
+                onChange={(e) => {
+                  console.log(e.target.files[0])
+                  setFile(e.target.files[0])
+                }}
+              /> */}
+              <button onClick={() => widgetRef.current.open()}>Upload</button>
             </div>
-          </div> */}
+          </div>
         </div>
         <div className="row pt-5">
           <div className="col text-center">

@@ -55,6 +55,7 @@ export default function Lookup({ employees }) {
             <th>Department</th>
             <th>Employee Status</th>
             <th>Email</th>
+            <th>Files</th>
           </tr>
         </thead>
         <tbody>
@@ -65,6 +66,9 @@ export default function Lookup({ employees }) {
               <td>{employee.department}</td>
               <td>{employee.employmentStatus}</td>
               <td>{employee.email}</td>
+              <td>
+                <a href={employee.fileURL}>{employee.fileName}</a>
+              </td>
             </tr>
           ))}
         </tbody>
